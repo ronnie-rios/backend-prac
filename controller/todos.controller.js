@@ -1,7 +1,8 @@
 const User = require("../models/user.model");
 const Todo = require("../models/todos.model");
 
-const postNote = async (req, res) => {
+
+const postTodo = async (req, res) => {
   try {
     const newTodo = await Todo.create(req.body);
 
@@ -17,22 +18,38 @@ const postNote = async (req, res) => {
   }
 };
 
-const deleteNote = async(req, res) => {
+const deleteTodo = async(req, res) => {
   try {
-    const { userId, todoId } = req.params;
+    const todoId = req.params.todoId;
+    const userId = req.params.userId
+    console.log(todoId, 'todo', userId ,'userId');
     // Update the user document to remove the specified todo
-    const updatedUser = await User.updateOne(
-      { _id: userId },
-      { $pull: { todos: { _id: todoId } } },
-      { new: true }
-    );
-    return res.json({ message: 'Todo deleted successfully' });
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Update the user document to remove the specified todo
+    user.todos.pull(todoId);
+    await user.save();
+
+    return res.json(user);
+    // const updatedUser = await User.findByIdAndUpdate(
+    //   userId ,
+    //   { $pull: { todos: { _id: todoId } } },
+    //   { new: true }
+    // );
+
+    // if (!updatedUser) {
+    //   return res.status(404).json({ error: 'User or Todo not found' });
+    // } 
+    // return res.json(updatedUser);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: 'An error occurred' });
   }
 }
 module.exports = {
-  postNote,
-  deleteNote
+  postTodo,
+  deleteTodo
 };

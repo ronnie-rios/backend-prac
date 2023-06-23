@@ -12,9 +12,9 @@ const getAll = async (req, res) => {
 const getOneUser = async (req, res) => {
   try {
     const user = await User.findById({ _id: req.params.id}).populate("todos");
-    return res.json(user)
+    return user ? res.json(user) : res.status(404).json({ message: "User not found" });
   } catch (error) {
-    res.status(404).json({ message: "User not found" });
+    res.status(500).json({ message: error});
   }
 };
 
