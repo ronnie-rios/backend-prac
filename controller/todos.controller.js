@@ -17,6 +17,22 @@ const postNote = async (req, res) => {
   }
 };
 
+const deleteNote = async(req, res) => {
+  try {
+    const { userId, todoId } = req.params;
+    // Update the user document to remove the specified todo
+    const updatedUser = await User.updateOne(
+      { _id: userId },
+      { $pull: { todos: { _id: todoId } } },
+      { new: true }
+    );
+    return res.json({ message: 'Todo deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
 module.exports = {
   postNote,
+  deleteNote
 };
