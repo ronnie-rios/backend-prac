@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { userRoutes } = require('./routes/user.routes');
-const { noteRoutes } = require('./routes/todos.routes');
+const { todoRoutes } = require('./routes/todos.routes');
 
 const app = express();
 
@@ -10,9 +10,13 @@ require("./config/mongoose.config");
 
 app.use(cors(), express.json(), express.urlencoded({ extended: true }));
 
+//routes, we prepend the endpoint here,
+//all of the user routes will have /api/users/
 app.use('/api/users', userRoutes);
-app.use('/api/notes',noteRoutes)
+//all of the todo routes will have /api/users/
+app.use('/api/todos', todoRoutes)
 
+//middleware
 app.use((req, res) => {
     res.status(404)
         .json({
@@ -20,14 +24,6 @@ app.use((req, res) => {
         })
 });
 
-app.use((err, req, res, next) => {
-    let errorStatus = err.status || 500;
-    let errorMessage = err.message || 'problem with your request';
-    res.json({
-        status: errorStatus,
-        message: errorMessage
-    });
-});
 
 
 app.listen(PORT, () => console.log(`server is running on ${PORT}`))
