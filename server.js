@@ -13,7 +13,7 @@ app.use(cors(), express.json(), express.urlencoded({ extended: true }));
 //routes, we prepend the endpoint here,
 //all of the user routes will have /api/users/
 app.use('/api/users', userRoutes);
-//all of the todo routes will have /api/users/
+//all of the todo routes will have /api/todo/
 app.use('/api/todos', todoRoutes)
 
 //middleware
