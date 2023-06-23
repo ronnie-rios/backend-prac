@@ -11,7 +11,9 @@ const postNote = async (req, res) => {
         { new: true }
       );
      
-      res.json(foundUser);
+      return foundUser
+      ? res.json(foundUser)
+      : res.status(404).json({ message: "User not found" });
     } catch (error) {
       res.status(400).json({ err: error })
     }
