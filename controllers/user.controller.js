@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    username,
+    username: {
+        type: String
+    },
 
     todos: [{
       type: mongoose.Schema.Types.ObjectId,
