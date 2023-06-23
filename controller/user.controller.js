@@ -11,12 +11,10 @@ const getAll = async (req, res) => {
 
 const getOneUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).populate("todos");
-    return user
-      ? res.json(user)
-      : res.status(404).json({ message: "User not found" });
+    const user = await User.findById({ _id: req.params.id}).populate("todos");
+    return res.json(user)
   } catch (error) {
-    res.status(400).json({ error: error });
+    res.status(404).json({ message: "User not found" });
   }
 };
 
