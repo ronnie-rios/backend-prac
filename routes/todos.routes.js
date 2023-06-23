@@ -3,9 +3,9 @@ const express = require('express');
 const TodoController = require('../controller/todos.controller');
 
 
-const noteRoutes = express.Router();
+const todoRoutes = express.Router();
 
-noteRoutes.post('/:id', TodoController.postNote);
+todoRoutes.post('/:id', TodoController.postNote);
 
 
-module.exports = { noteRoutes }
+module.exports = { todoRoutes }
