@@ -5,7 +5,7 @@ const TodoSchema = new mongoose.Schema({
         type: String,
        
     },
-    body: {
+    todo: {
         type: String,
     }
 });
