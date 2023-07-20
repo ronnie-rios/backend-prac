@@ -1,13 +1,13 @@
 const User = require("../models/user.model");
 const Todo = require("../models/todos.model");
 
-
 const postTodo = async (req, res) => {
   try {
     const newTodo = await Todo.create(req.body);
 
     const foundUser = await User.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: req.params.userId },
+      //the name of the property on the UserModel
       { $push: { todos: newTodo._id } },
       { new: true }
     );
@@ -31,9 +31,12 @@ const deleteTodo = async(req, res) => {
 
     // Update the user document to remove the specified todo
     user.todos.pull(todoId);
+    //saving it
     await user.save();
-
+    //returning the user
     return res.json(user);
+
+    //alternate way to do 
     // const updatedUser = await User.findByIdAndUpdate(
     //   userId ,
     //   { $pull: { todos: { _id: todoId } } },

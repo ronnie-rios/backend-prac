@@ -4,6 +4,8 @@ const { createUser, getAll, getOneUser } = require("../controller/user.controlle
 
 //set a variable that uses Router method
 const userRoutes = express.Router();
+
+//prepended /api/users
 //api/users/create
 userRoutes.post("/create", createUser);
 
@@ -14,4 +16,7 @@ userRoutes.get("/", getAll);
 userRoutes.get('/:id', getOneUser);
 
 
+
 module.exports = { userRoutes };
+
+

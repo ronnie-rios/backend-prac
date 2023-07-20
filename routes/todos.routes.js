@@ -2,10 +2,10 @@ const express = require('express');
 
 const { postTodo, deleteTodo} = require('../controller/todos.controller');
 
-
 const todoRoutes = express.Router();
+//prepended /api/todos
 
-todoRoutes.post('/:id', postTodo);
+todoRoutes.post('/:userId', postTodo);
 todoRoutes.delete('/:todoId/:userId', deleteTodo);
 
 

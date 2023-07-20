@@ -11,6 +11,7 @@ const getAll = async (req, res) => {
 
 const getOneUser = async (req, res) => {
   try {
+    //populate method populates the array, in this case the todos array on ther user model
     const user = await User.findById({ _id: req.params.id}).populate("todos");
     return user ? res.json(user) : res.status(404).json({ message: "User not found" });
   } catch (error) {
