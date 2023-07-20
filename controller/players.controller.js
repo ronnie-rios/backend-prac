@@ -1,10 +1,10 @@
 const playersData= require('../data/playersData');
 
-const getPlayers = async (req, res, next) => {
+const getPlayers = async (req, res) => {
     try {
         res.json(playersData)
     } catch (error) {
-        next();
+        res.json({ message: 'error'});
     }
 }
 const createPlayer = async (req, res) => {

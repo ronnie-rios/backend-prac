@@ -9,11 +9,6 @@ const playersData = [
         name: 'Enzo Fernandez',
         team: 'Chelsea'
     },
-    {
-        id:3,
-        name: 'Saka',
-        team: 'Arsenal'
-    },
 ]
 
 module.exports = playersData
