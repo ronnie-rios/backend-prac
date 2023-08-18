@@ -3,6 +3,7 @@ const cors = require('cors');
 const { userRoutes } = require('./routes/user.routes');
 const { todoRoutes } = require('./routes/todos.routes');
 const { playerRoutes } = require('./routes/players.routes');
+const { catRoutes } = require('./routes/fakedata.routes');
 const app = express();
 
 const PORT = 9002;
@@ -17,6 +18,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes)
 
 app.use('/api/players', playerRoutes)
+
+app.use('/api/cats', catRoutes)
 
 //middleware
 app.use((req, res) => {

@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "catName": "Whiskers",
+      "catBreed": "Persian",
+      "catBehavior": "Playful"
+    },
+    {
+      "id": 2,
+      "catName": "Spike",
+      "catBreed": "Siamese",
+      "catBehavior": "Lazy"
+    },
+    {
+      "id": 3,
+      "catName": "Felix",
+      "catBreed": "Maine Coon",
+      "catBehavior": "Curious"
+    },
+    {
+      "id": 4,
+      "catName": "Mittens",
+      "catBreed": "Sphynx",
+      "catBehavior": "Affectionate"
+    },
+    {
+      "id": 5,
+      "catName": "Luna",
+      "catBreed": "Bengal",
+      "catBehavior": "Mischievous"
+    }
+  ]
+  
